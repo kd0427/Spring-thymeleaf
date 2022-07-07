@@ -1,24 +1,32 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-
 </html>
 
-<head th:replace="fragments/common-header :: head('홈')"></head>
+<head th:replace="fragments/common-header :: head('글')">
+</head>
 
 <body>
+  <header th:replace="fragments/common-header :: menu('board')"></header>
 
-  <header th:replace=" fragments/common-header :: menu('home')">
-  </header>
 
-  <main role="main" class="container">
+  <div class="container">
+    <h2>보기</h2>
 
-    <div class="starter-template">
-      <h1>Spring Boot Tutorial</h1>
-      <p class="lead">SpringBoot+Thymeleaf<br> SpringBoot, Thymeleaf, mariaDB, jpa로 게시판 만들기 연습</p>
+    <div class="form-group">
+      <label for="title">제목</label>
+      <input type="text" class="form-control" id="title" th:value="${board.title}" disabled />
     </div>
+    <div class="form-group">
+      <label for="content">내용</label>
+      <textarea class="form-control" id="content" rows="3" th:text="${board.content}" disabled></textarea>
+    </div>
+    <a type="button" class="btn btn-danger float-right " th:href="@{/board/delete(id=${board.id})}">삭제하기</a>
+    <a type="button" class="btn btn-primary float-right mr-2" th:href="@{/board/list}">목록으로</a>
+    <a type="button" class="btn btn-primary float-right mr-2" th:href="@{/board/form(id=${board.id})}">수정하기</a>
 
-  </main><!-- /.container -->
+  </div>
+
 
 
   <!-- Optional JavaScript; choose one of the two! -->
